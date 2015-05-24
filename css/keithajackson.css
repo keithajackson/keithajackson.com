@@ -1,0 +1,41 @@
+/* Navigation */
+
+.mobile-off {
+	display:none;
+}
+
+.circular {
+	border-radius: 150px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;
+}
+
+@media all and (min-width:768px) {
+	.mobile-only {
+		display:none;
+	}
+	.mobile-off {
+		display:block;
+	}
+}
+
+.myEmail {
+	margin-top:7px;
+	margin-left:12px;
+}
+
+.header-row {
+	text-align: center
+	color: #fff;
+	font-weight:bold;
+	font-size:1.5em;
+}
+
+.header-row a {
+	color:#fff;
+	font-weight: normal;
+	font-size:0.8em;
+}
+.header-row a:hover, .header-row a:focus {
+	color:#fff;
+}
