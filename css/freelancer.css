@@ -99,7 +99,7 @@ header .intro-text .name {
     display: block;
     text-transform: uppercase;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 2em;
+    font-size: 2.5em;
     font-weight: 700;
 }
 
@@ -172,11 +172,6 @@ header .intro-text .skills {
 
 section {
     padding: 100px 0;
-}
-
-section h2 {
-    margin: 0;
-    font-size: 3em;
 }
 
 section.success {

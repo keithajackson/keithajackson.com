@@ -1,4 +1,13 @@
-/* Navigation */
+section h2 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+@media all and (min-width: 768px) {
+    section h2 {
+        font-size: 3em;
+    }
+}
 
 .mobile-off {
 	display:none;
@@ -38,4 +47,14 @@
 }
 .header-row a:hover, .header-row a:focus {
 	color:#fff;
+}
+
+.scale-down-on-mobile {
+	font-size: .9em;
+}
+
+@media all and (min-width:768px) {
+	.scale-down-on-mobile {
+		font-size: 1em;
+	}
 }
