@@ -35,13 +35,8 @@ function makeLoaderConfig(options) {
     test: /\.(png|jpg|gif|svg|woff|woff2|ttf|eot|pdf)/,
     loader: 'file'
   }, {
-    // HTML (save as discrete file and return the filename to the require())
-    test: /\.html$/,
-    exclude: /\.bundled\.html$/,
-    loader: 'file'
-  }, {
     // HTML (inject directly into js that require()s)
-    test: /\.bundled\.html$/,
+    test: /\.html$/,
     loader: 'raw'
   }, {
     // JSON files
@@ -112,7 +107,7 @@ module.exports = function makeWebpackConfig(unsafeOptions) {
   // Default config is production
   const options = Object.assign({
     entrypoint: './src/app.js',
-    baseHtml: './src/index.bundled.html',
+    baseHtml: './src/index.html',
     outputPath: './dist',
     sourcemap: false,
     extractCss: true,

@@ -23,7 +23,9 @@ const register = ({ url }) => {
       url,
       controller: controllerName,
       controllerAs: 'vm',
-      template: require('./template.bundled.html'),
+      templateProvider: () => new Promise((resolve) => {
+        require.ensure([], () => resolve(require('./template.html')));
+      }),
       resolve: {
         controller: ['$ocLazyLoad', $ocLazyLoad => new Promise((resolve) => {
           require.ensure([], () => {
