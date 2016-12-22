@@ -3,5 +3,5 @@ module.exports = require('./webpack.make')({
   sourcemap: true,
   extractCss: true,
   optimize: false,
-  devserver: true
+  devserver: true,
 });

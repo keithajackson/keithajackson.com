@@ -9,7 +9,7 @@ const debugVerbose = require('debug')(`${pkg.name}:webpack.config:verbose:`);
 
 const prettyPrintJson = JsObject => JSON.stringify(JsObject, null, 2);
 
-function makePreLoaderConfig(options) {
+function makePreLoaderConfig() {
   const preLoaderConfig = [];
 
   debugVerbose('Pre-loader config:', prettyPrintJson(preLoaderConfig));
@@ -23,30 +23,30 @@ function makeLoaderConfig(options) {
     exclude: /node_modules/,
     loader: 'babel',
     query: {
-      presets: [ 'es2015' ],
-      plugins: [ 'transform-runtime', 'ng-inject' ]
-    }
+      presets: ['es2015'],
+      plugins: ['transform-runtime', 'ng-inject'],
+    },
   }, {
     // Favicon - must be saved at site root to work
     test: /favicon\.ico$/,
-    loader: 'file?name=[name].[ext]'
+    loader: 'file?name=[name].[ext]',
   }, {
     // Images
     test: /\.(png|jpg|gif|svg|woff|woff2|ttf|eot|pdf)/,
-    loader: 'file'
+    loader: 'file',
   }, {
     // HTML (inject directly into js that require()s)
     test: /\.html$/,
-    loader: 'raw'
+    loader: 'raw',
   }, {
     // JSON files
     test: /\.json$/,
-    loader: 'json'
+    loader: 'json',
   }, {
     // SASS stylesheets
     test: /\.scss$/,
     loader: (options.extractCss) ? ExtractTextPlugin.extract('style', 'css?sourceMap!postcss!resolve-url!sass')
-      : 'style!css!postcss!resolve-url!sass'
+      : 'style!css!postcss!resolve-url!sass',
   }];
 
   debugVerbose('Loader config:', prettyPrintJson(loaderConfig));
@@ -59,12 +59,12 @@ function makePluginConfig(options) {
     new HtmlWebpackPlugin({
       template: options.baseHtml,
       showErrors: true,
-      inject: 'body'
+      inject: 'body',
     }),
     // Group shared/universal modules into a single file
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      filename: 'vendor.bundle.js'
+      filename: 'vendor.bundle.js',
     }),
   ];
 
@@ -78,7 +78,7 @@ function makePluginConfig(options) {
     pluginConfig.push(
       new webpack.NoErrorsPlugin(),
       new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.UglifyJsPlugin()
+      new webpack.optimize.UglifyJsPlugin(),
     );
   }
 
@@ -95,12 +95,12 @@ function makeDevServerConfig(options) {
         modules: false,
         cached: false,
         colors: true,
-        chunk: false
-      }
+        chunk: false,
+      },
     };
   }
 
-  debugVerbose('Dev-server config:', prettyPrintJson(devServerConfig))
+  debugVerbose('Dev-server config:', prettyPrintJson(devServerConfig));
 }
 
 module.exports = function makeWebpackConfig(unsafeOptions) {
@@ -112,7 +112,7 @@ module.exports = function makeWebpackConfig(unsafeOptions) {
     sourcemap: false,
     extractCss: true,
     optimize: true,
-    devserver: false
+    devserver: false,
   }, unsafeOptions);
 
   debug('Creating Webpack Config using options', prettyPrintJson(options));
@@ -120,10 +120,10 @@ module.exports = function makeWebpackConfig(unsafeOptions) {
 
   const config = {
     entry: {
-      app: options.entrypoint
+      app: options.entrypoint,
     },
     output: options.outputPath,
-    vendor: [ 'angular', 'oclazyload', 'angular-ui-router' ],
+    vendor: ['angular', 'oclazyload', 'angular-ui-router'],
 
     // Randomize JS filenames for cachebusting
     filename: '[name].[hash].js',
@@ -134,21 +134,21 @@ module.exports = function makeWebpackConfig(unsafeOptions) {
 
     module: {
       preLoaders: makePreLoaderConfig(options),
-      loaders: makeLoaderConfig(options)
+      loaders: makeLoaderConfig(options),
     },
 
     postcss: [
-      autoprefixer({ browsers: ['last 2 versions'] })
+      autoprefixer({ browsers: ['last 2 versions'] }),
     ],
 
     plugins: makePluginConfig(options),
 
     resolve: {},
 
-    devServer: makeDevServerConfig(options)
+    devServer: makeDevServerConfig(options),
   };
 
   debug('Created Webpack config', prettyPrintJson(config));
 
   return config;
-}
+};
