@@ -1,0 +1,13 @@
+.loader.ng-hide-add, .loader.ng-hide-remove {
+  transition: 4s linear all;
+}
+
+.loader {
+  background: rgb(237, 240, 241) url('~/src/images/box.gif');
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999999;
+}
