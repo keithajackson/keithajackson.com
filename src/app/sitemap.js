@@ -1,29 +1,36 @@
-// Define all the route URLs in a single place to make maintenance easier
+// Define all the routing setup in a single place to make maintenance easier
 const angular = require('angular');
 
-const stateDependencies = [
+// Load and configure all the route modules in one place
+// Just loading the module will add a config block for UI router;
+// as long as we make these prerequisites for the sitemap, we can guarantee
+// that all of the configs will run before the app starts.
+const stateDefinitionModules = [
   require('./home/routing').register({
     url: '/',
   }),
   require('./404/routing').register({}),
 ];
 
-module.exports = angular.module('app.sitemap', stateDependencies)
-  .config(($urlRouterProvider, $locationProvider) => {
-    'ngInject';
+// Configure ui-router to load the 404 page when an unknown route is encountered
+function unknownRouteHandler($urlRouterProvider, $locationProvider) {
+  'ngInject';
 
-    const notFoundStateName = require('./404/routing').stateName;
-    $locationProvider.html5Mode(true);
+  const notFoundStateName = require('./404/routing').stateName;
+  $locationProvider.html5Mode(true);
 
-    function unknownStateHandler($injector) {
-      return $injector.get('$state').go(notFoundStateName);
-    }
+  function unknownStateHandler($injector) {
+    return $injector.get('$state').go(notFoundStateName);
+  }
 
-    // We must explicitly $inject here because .otherwise doesn't accept
-    // the normal [dependency, dependency, function] array format that ngInject
-    // returns.
-    unknownStateHandler.$inject = ['$injector'];
+  // We must explicitly $inject here because .otherwise doesn't accept
+  // the normal [dependency, dependency, function] array format that ngInject
+  // returns.
+  unknownStateHandler.$inject = ['$injector'];
 
-    $urlRouterProvider.otherwise(unknownStateHandler);
-  })
+  $urlRouterProvider.otherwise(unknownStateHandler);
+}
+
+module.exports = angular.module('app.sitemap', stateDefinitionModules)
+  .config(unknownRouteHandler)
   .name;
