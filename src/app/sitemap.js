@@ -13,7 +13,7 @@ const stateDefinitionModules = [
 ];
 
 // Configure ui-router to load the 404 page when an unknown route is encountered
-function unknownRouteHandler($urlRouterProvider, $locationProvider) {
+const unknownRouteHandler = ($urlRouterProvider, $locationProvider) => {
   'ngInject';
 
   const notFoundStateName = require('./404/routing').stateName;
@@ -29,7 +29,7 @@ function unknownRouteHandler($urlRouterProvider, $locationProvider) {
   unknownStateHandler.$inject = ['$injector'];
 
   $urlRouterProvider.otherwise(unknownStateHandler);
-}
+};
 
 module.exports = angular.module('app.sitemap', stateDefinitionModules)
   .config(unknownRouteHandler)
