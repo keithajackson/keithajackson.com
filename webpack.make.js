@@ -75,11 +75,9 @@ function makePluginConfig(options) {
 
   // Only optimize if we ask for it - increases build time
   if (options.optimize) {
-    pluginConfig.push(
-      new webpack.NoErrorsPlugin(),
-      new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.UglifyJsPlugin(),
-    );
+    pluginConfig.push(new webpack.NoErrorsPlugin());
+    pluginConfig.push(new webpack.optimize.DedupePlugin());
+    pluginConfig.push(new webpack.optimize.UglifyJsPlugin());
   }
 
   debugVerbose('Plugin config:', prettyPrintJson(pluginConfig));
