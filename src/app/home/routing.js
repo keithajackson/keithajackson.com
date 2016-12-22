@@ -1,7 +1,6 @@
 // UI-Router definition and 'seam' for lazy loading
-// Core app includes this file to know what bundle to call,
-// and ocLazyLoad bundles all the files that register() requires into a
-// single bundle.
+// Everything wrapped by a "require.ensure" will be lazy-loaded.
+// Load this file and call .register() to set up the ui-router state.
 
 const controllerName = 'HomeController';
 const moduleName = 'app.home';
@@ -18,31 +17,51 @@ const register = ({ url }) => {
     require('angular-ui-router'),
   ];
 
-  function addState($stateProvider) {
+  const lazyLoadTemplate = () => new Promise((resolve, reject) => {
+    require.ensure(['./template.html'], () => {
+      try {
+        resolve(require('./template.html'));
+      } catch (err) {
+        reject(err);
+      }
+    });
+  });
+
+  const lazyLoadController = ($ocLazyLoad) => {
+    'ngInject';
+
+    return new Promise((resolve, reject) => {
+      require.ensure(['./controller.js'], () => {
+        try {
+          require('./controller.js')(controllerModuleName, controllerName);
+
+          // $ocLazyLoad will asynchronously load the module into the app
+          // namespace for us
+          $ocLazyLoad.load({ name: controllerModuleName });
+          resolve();
+        } catch (err) {
+          reject(err);
+        }
+      });
+    });
+  };
+
+  const configureState = ($stateProvider) => {
+    'ngInject';
+
     $stateProvider.state(stateName, {
       url,
       controller: controllerName,
       controllerAs: 'vm',
-      templateProvider: () => new Promise((resolve) => {
-        require.ensure([], () => resolve(require('./template.html')));
-      }),
+      templateProvider: lazyLoadTemplate,
       resolve: {
-        controller: ['$ocLazyLoad', $ocLazyLoad => new Promise((resolve) => {
-          require.ensure([], () => {
-            require('./controller.js')(controllerModuleName, controllerName);
-
-            $ocLazyLoad.load({ name: controllerModuleName });
-            resolve();
-          });
-        })],
+        controller: lazyLoadController,
       },
     });
-  }
-
-  addState.$inject = ['$stateProvider'];
+  };
 
   return angular.module(routingModuleName, angularDependencies)
-    .config(addState)
+    .config(configureState)
     .name;
 };
 
