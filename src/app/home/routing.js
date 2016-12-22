@@ -7,13 +7,15 @@ const controllerName = 'HomeController';
 const moduleName = 'app.home';
 const stateName = 'home';
 
-const controllerModuleName = `${moduleName}.controller`
-const routingModuleName = `${moduleName}.routing`
+const controllerModuleName = `${moduleName}.controller`;
+const routingModuleName = `${moduleName}.routing`;
 
 const register = ({ url }) => {
+  const angular = require('angular');
+
   const angularDependencies = [
     require('oclazyload'),
-    require('angular-ui-router')
+    require('angular-ui-router'),
   ];
 
   function addState($stateProvider) {
@@ -23,19 +25,16 @@ const register = ({ url }) => {
       controllerAs: 'vm',
       template: require('./template.bundled.html'),
       resolve: {
-        controller: ['$ocLazyLoad', ($ocLazyLoad) => {
-          return new Promise((resolve, reject) => {
-            require.ensure([], () => {
-              require('./controller.js')(controllerModuleName, controllerName);
+        controller: ['$ocLazyLoad', $ocLazyLoad => new Promise((resolve) => {
+          require.ensure([], () => {
+            require('./controller.js')(controllerModuleName, controllerName);
 
-              $ocLazyLoad.load({ name: controllerModuleName });
-              resolve();
-            });
+            $ocLazyLoad.load({ name: controllerModuleName });
+            resolve();
           });
-        }]
-      }
+        })],
+      },
     });
-    console.log('Set up home route');
   }
 
   addState.$inject = ['$stateProvider'];
@@ -49,5 +48,5 @@ module.exports = {
   register,
   controllerName,
   moduleName,
-  stateName
+  stateName,
 };

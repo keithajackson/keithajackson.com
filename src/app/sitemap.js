@@ -3,27 +3,27 @@ const angular = require('angular');
 
 const stateDependencies = [
   require('./home/routing').register({
-    url: '/'
+    url: '/',
   }),
-  require('./404/routing').register({})
+  require('./404/routing').register({}),
 ];
 
 module.exports = angular.module('app.sitemap', stateDependencies)
-  .config(($urlRouterProvider, $locationProvider, $injector) => {
+  .config(($urlRouterProvider, $locationProvider) => {
     'ngInject';
-    const landingStateName = require('./home/routing').stateName;
+
     const notFoundStateName = require('./404/routing').stateName;
     $locationProvider.html5Mode(true);
 
-    const otherwise = function($injector) {
+    function unknownStateHandler($injector) {
       return $injector.get('$state').go(notFoundStateName);
-    };
+    }
 
     // We must explicitly $inject here because .otherwise doesn't accept
     // the normal [dependency, dependency, function] array format that ngInject
     // returns.
-    otherwise.$inject = [ '$injector' ];
+    unknownStateHandler.$inject = ['$injector'];
 
-    $urlRouterProvider.otherwise(otherwise);
+    $urlRouterProvider.otherwise(unknownStateHandler);
   })
   .name;

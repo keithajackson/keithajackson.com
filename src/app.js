@@ -3,7 +3,7 @@ const angularDependencies = [];
 const angular = require('angular');
 
 // Load stylesheet globally
-require('./styles/app.scss')
+require('./styles/app.scss');
 
 // angularDependencies.push(require('angular-bootstrap'));
 angularDependencies.push(require('./app/sitemap.js'));
