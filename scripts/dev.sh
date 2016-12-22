@@ -3,7 +3,7 @@
 WEBPACK_DEV_HOST="${WEBPACK_DEV_HOST:-localhost}"
 WEBPACK_DEV_PORT="${WEBPACK_DEV_PORT:-8080}"
 
-echo "Starting Webpack devserver on $WEBPACK_DEV_PORT:$WEBPACK_DEV_PORT..."
+echo "Starting Webpack devserver on $WEBPACK_DEV_HOST:$WEBPACK_DEV_PORT..."
 
 node node_modules/.bin/webpack-dev-server \
   --config webpack.development.js \
