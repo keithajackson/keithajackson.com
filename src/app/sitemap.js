@@ -7,7 +7,16 @@ const angular = require('angular');
 // that all of the configs will run before the app starts.
 const stateDefinitionModules = [
   require('./home/routing').register({
-    url: '/',
+    url: '/home',
+  }),
+  require('./experience/routing').register({
+    url: '/experience',
+  }),
+  require('./portfolio/routing').register({
+    url: '/portfolio',
+  }),
+  require('./contact/routing').register({
+    url: '/contact',
   }),
   require('./404/routing').register({}),
 ];

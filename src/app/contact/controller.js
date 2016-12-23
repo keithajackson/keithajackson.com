@@ -3,6 +3,8 @@ const angular = require('angular');
 const angularDependencies = [];
 
 function HomeController() {
+  const vm = this;
+  vm.sample = 'OK!';
 }
 
 module.exports = function register(moduleName, controllerName) {

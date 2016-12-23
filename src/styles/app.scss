@@ -11,3 +11,6 @@
   bottom: 0;
   z-index: 999999;
 }
+
+// Show pointers for angular-ui-bootstrap
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }

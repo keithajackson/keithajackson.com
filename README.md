@@ -12,5 +12,5 @@ Things we get with Webpack:
 ## Things in progress
 
 1. Migrate old content to pages on new site
-2. Add eslint for sanity testing
+2. Design + implement non-onepager format for site
 3. Integrate CI and CD with Travis to auto-publish when master gets updated

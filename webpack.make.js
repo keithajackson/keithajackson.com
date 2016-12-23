@@ -43,6 +43,11 @@ function makeLoaderConfig(options) {
     test: /\.json$/,
     loader: 'json',
   }, {
+    // CSS stylesheets
+    test: /\.css$/,
+    loader: (options.extractCss) ? ExtractTextPlugin.extract('style', 'css?sourceMap!postcss!resolve-url')
+      : 'style!css!postcss!resolve-url',
+  }, {
     // SASS stylesheets
     test: /\.scss$/,
     loader: (options.extractCss) ? ExtractTextPlugin.extract('style', 'css?sourceMap!postcss!resolve-url!sass')

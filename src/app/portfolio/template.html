@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <h2>Projects</h2>
+      <hr class="star-primary">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12" ng-repeat="project in vm.portfolio track by $index">
+      <div ng-if="project.preview" class="col-xs-12 col-sm-4">
+        <img ng-src="{{ ::project.preview }}" class="img-responsive img-centered" alt="">
+      </div>
+      <div class="col-xs-12 col-sm-8" style="vertical-align:center">
+        <h3>{{ ::project.name }}</h3>
+        <h4><a href="{{ ::project.url }}" target="_blank">{{ ::project.url }}</a></h4>
+
+        <p>
+          <ul>
+            <li ng-repeat="detail in project.description track by $index">{{ ::detail }}</li>
+          </ul>
+        </p>
+        <p>
+          <strong><a href="{{ ::project.url }}" target="_blank">Visit site</a></strong> | <a href="{{ ::project.sourceCodeUrl }}" target="_blank">View source code on GitHub</a>
+        </p>
+        <ul class="list-inline item-details">
+          <li ng-if="project.client">Client:
+            <strong><a href="{{ ::project.client.url }}" target="_blank">{{ ::project.client.name }}</a></strong>
+          </li>
+          <li>Date:
+            <strong>{{ project.date }}</strong>
+          </li>
+        </ul>
+        Technologies:
+        <ul class="list-inline" style="display:inline">
+          <li ng-repeat="technology in project.technologies track by $index"><a href="{{ ::technology.url }}" target="_blank">{{ ::technology.name }}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

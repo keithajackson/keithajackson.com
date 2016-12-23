@@ -1,0 +1,56 @@
+[{
+	"company": "Everyone Counts",
+	"period": "October 2015 - present",
+	"title": "Software Developer",
+	"responsibilities": [
+		"Specialized as front-end architect and subject-matter expert for Angular 1.x/Webpack/ES2015-based single-page application",
+		"Designed, developed, and supported a front-end core and library set shared between product teams",
+		"Developed and supported Node.js-powered applications written in the Loopback (Express-based) framework using Node 6, ES2015, and Babel",
+		"Contributed to LoopBack's open-source community with non-confidential improvements",
+		"Prepared and presented product demos for executive team on a bi-weekly basis",
+		"Helped establish and maintain standards for code reviews, JavaScript linting, internationalization-ready HTML templates, and required unit test coverage",
+		"Supported and extended API unit and end-to-end test suites using Mocha, Chai, Supertest, and Sinon"
+	]
+}, {
+	"company": "Qualcomm",
+	"period": "May 2015 - October 2015",
+	"title": "Engineer",
+	"responsibilities": [
+		"Designed and implemented developer tools to simplify webapp analytics within company network",
+		"Continued development and optimization of CSS3-based responsive websites for Internet Explorer 9+, Chrome, Firefox, and Safari on Windows, Macintosh, Android, iOS, and Windows Phone",
+		"Designed and executed native app testing for international development contractors",
+		"Updated and maintained Bootstrap-based one-pager event websites for multiple company hackathons"
+	]
+}, {
+	"company": "Qualcomm",
+	"period": "May - August 2014; November - May 2015",
+	"title": "Intern",
+	"responsibilities": [
+		"Specialized in front-end development using JQuery, PHP, WordPress, and Bootstrap",
+		"Designed, developed, and supported CSS3-based responsive websites for Internet Explorer 7+, Chrome, Firefox, and Safari on Windows, Macintosh, Android, iOS, and Windows Phone",
+		"Led project to support and update web application for international offices using AngularJS",
+		"Educated team on real-time website development using Meteor and MongoDB",
+		"Helped organize and advertise internal hackathon for 200 interns",
+		"Collaborated with designers in local and overseas teams to collect feature requirements and meet requested deadlines",
+		"Recipient of two \"Qualstar\" employee awards for excellence in App Store development and contributions to the intern hackathon"
+	]
+}, {
+	"company": "Qualcomm",
+	"period": "May - August 2013",
+	"title": "Intern",
+	"responsibilities": [
+		"Specialized in algorithm and data structure design for Android",
+		"Designed for a multithreaded, shared-data environment using the Lua scripting language",
+		"Prepared design overviews and software demonstrations for customers",
+		"Collaborated with a small development team using a prototype-driven methodology"
+	]
+}, {
+	"company": "KALA Brand Music",
+	"period": "August - October 2010",
+	"title": "Database Scripting Contractor",
+	"responsibilities": [
+		"Modified generated SQL scripts to fetch and present customized sales reports for external use",
+		"Self-managed several script projects to meet client’s release priorities",
+		"Self-taught SQL scripting language to prepare for job"
+	]
+}]

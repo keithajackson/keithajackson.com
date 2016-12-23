@@ -5,7 +5,26 @@
   </head>
   <body>
     <div class="loader" ng-hide="true"></div>
-    {{ 'Rendering stuff with Angular' }}
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="navbar-header">
+  			<button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
+  				<span class="sr-only">Toggle navigation</span>
+  				<span class="icon-bar"></span>
+  				<span class="icon-bar"></span>
+  				<span class="icon-bar"></span>
+  			</button>
+  			<a class="navbar-brand" ui-sref="home">Keith A Jackson</a>
+		  </div>
+  		<div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
+  			<ul class="nav navbar-nav">
+  				<li><a ui-sref="experience">Experience</a></li>
+  				<li><a ui-sref="portfolio">Portfolio</a></li>
+  			</ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a ui-sref="contact">Contact</a></li>
+        </ul>
+  		</div>
+    </nav>
     <div data-ui-view></div>
   </body>
 </html>
